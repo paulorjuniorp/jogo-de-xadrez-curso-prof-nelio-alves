@@ -1,10 +1,10 @@
 package com.paulorjuniorp.tabuleiro;
 
-public class Piece {
+public class Peca {
     protected Posicao posicao;
     private Tabuleiro tabuleiro;
 
-    public Piece(Tabuleiro tabuleiro) {
+    public Peca(Tabuleiro tabuleiro) {
         this.tabuleiro = tabuleiro;
     }
 
