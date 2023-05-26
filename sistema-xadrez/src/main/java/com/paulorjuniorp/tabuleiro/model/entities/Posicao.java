@@ -1,4 +1,4 @@
-package com.paulorjuniorp.tabuleiro;
+package com.paulorjuniorp.tabuleiro.model.entities;
 
 public class Posicao {
     private int linha;

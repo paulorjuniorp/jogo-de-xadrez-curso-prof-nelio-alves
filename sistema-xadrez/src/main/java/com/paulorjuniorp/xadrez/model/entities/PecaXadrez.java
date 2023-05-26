@@ -1,8 +1,8 @@
 package com.paulorjuniorp.xadrez.model.entities;
 
-import com.paulorjuniorp.tabuleiro.Peca;
-import com.paulorjuniorp.tabuleiro.Tabuleiro;
-import com.paulorjuniorp.xadrez.enums.Color;
+import com.paulorjuniorp.tabuleiro.model.entities.Peca;
+import com.paulorjuniorp.tabuleiro.model.entities.Tabuleiro;
+import com.paulorjuniorp.xadrez.model.enums.Color;
 
 public class PecaXadrez extends Peca {
 

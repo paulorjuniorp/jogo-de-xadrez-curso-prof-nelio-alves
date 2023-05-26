@@ -1,6 +1,6 @@
 package com.paulorjuniorp.xadrez.model.entities;
 
-import com.paulorjuniorp.tabuleiro.Tabuleiro;
+import com.paulorjuniorp.tabuleiro.model.entities.Tabuleiro;
 
 public class PartidaXadrez {
     private Tabuleiro tabuleiro;
