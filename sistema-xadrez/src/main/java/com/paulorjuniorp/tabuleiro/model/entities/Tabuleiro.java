@@ -42,7 +42,7 @@ public class Tabuleiro {
     }
 
     public void pecaNoLugar(Peca peca, Posicao posicao){
-        if (existePecaPosicao(posicao)){
+        if (existeUmaPeca(posicao)){
             throw new TabuleiroException("Já existe uma peça na posição " + posicao);
         }
 
