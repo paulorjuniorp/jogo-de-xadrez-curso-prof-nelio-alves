@@ -11,6 +11,7 @@ public class Main {
         PartidaXadrez partidaXadrez = new PartidaXadrez();
         Scanner scanner = new Scanner(System.in);
         while (true){
+            UI.clearScreen();
             UI.imprimeTabuleiro(partidaXadrez.getPecas());
             System.out.println();
             System.out.print("Origem: ");
