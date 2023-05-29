@@ -4,7 +4,7 @@ import com.paulorjuniorp.tabuleiro.model.entities.Peca;
 import com.paulorjuniorp.tabuleiro.model.entities.Tabuleiro;
 import com.paulorjuniorp.xadrez.model.enums.Color;
 
-public class PecaXadrez extends Peca {
+public abstract class PecaXadrez extends Peca {
 
     private Color color;
     private int contagemMovimento;
