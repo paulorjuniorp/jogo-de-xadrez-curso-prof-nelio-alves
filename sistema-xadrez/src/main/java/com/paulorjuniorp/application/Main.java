@@ -3,7 +3,9 @@ package com.paulorjuniorp.application;
 import com.paulorjuniorp.xadrez.model.entities.PartidaXadrez;
 import com.paulorjuniorp.xadrez.model.entities.PecaXadrez;
 import com.paulorjuniorp.xadrez.model.entities.PosicaoXadrez;
+import com.paulorjuniorp.xadrez.model.exceptions.XadrezException;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -11,16 +13,21 @@ public class Main {
         PartidaXadrez partidaXadrez = new PartidaXadrez();
         Scanner scanner = new Scanner(System.in);
         while (true){
-            UI.clearScreen();
-            UI.imprimeTabuleiro(partidaXadrez.getPecas());
-            System.out.println();
-            System.out.print("Origem: ");
-            PosicaoXadrez origem = UI.entradaPosicaoXadrez(scanner);
+            try {
+                UI.clearScreen();
+                UI.imprimeTabuleiro(partidaXadrez.getPecas());
+                System.out.println();
+                System.out.print("Origem: ");
+                PosicaoXadrez origem = UI.entradaPosicaoXadrez(scanner);
 
-            System.out.print("Destino: ");
-            PosicaoXadrez destino = UI.entradaPosicaoXadrez(scanner);
+                System.out.print("Destino: ");
+                PosicaoXadrez destino = UI.entradaPosicaoXadrez(scanner);
 
-            PecaXadrez pecaCapturada = partidaXadrez.executaJogadaXadrez(origem,destino);
+                PecaXadrez pecaCapturada = partidaXadrez.executaJogadaXadrez(origem,destino);
+            } catch (XadrezException | InputMismatchException e){
+                System.out.println(e.getMessage());
+                scanner.nextLine();
+            }
         }
     }
 }
