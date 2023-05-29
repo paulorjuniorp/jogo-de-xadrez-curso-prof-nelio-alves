@@ -1,6 +1,8 @@
 package com.paulorjuniorp.xadrez.model.exceptions;
 
-public class XadrezException extends RuntimeException {
+import com.paulorjuniorp.tabuleiro.model.exception.TabuleiroException;
+
+public class XadrezException extends TabuleiroException {
     public XadrezException(String message) {
         super(message);
     }

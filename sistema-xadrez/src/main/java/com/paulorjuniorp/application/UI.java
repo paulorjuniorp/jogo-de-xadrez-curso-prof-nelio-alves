@@ -1,7 +1,11 @@
 package com.paulorjuniorp.application;
 
 import com.paulorjuniorp.xadrez.model.entities.PecaXadrez;
+import com.paulorjuniorp.xadrez.model.entities.PosicaoXadrez;
 import com.paulorjuniorp.xadrez.model.enums.Color;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class UI {
 
@@ -24,6 +28,17 @@ public class UI {
     public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
     public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
+    public static PosicaoXadrez entradaPosicaoXadrez(Scanner scanner){
+        try {
+            String entrada = scanner.nextLine();
+            char coluna = entrada.charAt(0);
+            int linha = Integer.parseInt(entrada.substring(1));
+
+            return new PosicaoXadrez(coluna,linha);
+        } catch (RuntimeException e){
+            throw new InputMismatchException("Erro ao ler a posição. Os valores válidos estão entre a1 e h8.");
+        }
+    }
     public static void imprimeTabuleiro(PecaXadrez[][] pecasXadrez){
         for (int i = 0; i < pecasXadrez.length; i++){
             System.out.print((8-i) + " ");

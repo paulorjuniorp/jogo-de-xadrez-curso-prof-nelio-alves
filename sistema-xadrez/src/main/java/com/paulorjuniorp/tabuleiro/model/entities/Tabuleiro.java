@@ -50,6 +50,20 @@ public class Tabuleiro {
         peca.posicao = posicao;
     }
 
+    public Peca removePeca(Posicao posicao){
+        if (!existePecaPosicao(posicao)){
+            throw new TabuleiroException("Erro: Posição não está presente no tabuleiro");
+        }
+        if (peca(posicao) == null){
+            return null;
+        }
+        Peca aux = peca(posicao);
+        aux.posicao = null;
+        pecas[posicao.getLinha()][posicao.getColuna()] = null;
+
+        return aux;
+    }
+
     public boolean existeUmaPeca(Posicao posicao){
         if (!existePecaPosicao(posicao)){
             throw new TabuleiroException("Posição fora do tabuleiro");

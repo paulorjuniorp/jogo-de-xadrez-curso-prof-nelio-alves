@@ -1,10 +1,12 @@
 package com.paulorjuniorp.xadrez.model.entities;
 
+import com.paulorjuniorp.tabuleiro.model.entities.Peca;
 import com.paulorjuniorp.tabuleiro.model.entities.Posicao;
 import com.paulorjuniorp.tabuleiro.model.entities.Tabuleiro;
 import com.paulorjuniorp.xadrez.model.entities.pecas.Rei;
 import com.paulorjuniorp.xadrez.model.entities.pecas.Torre;
 import com.paulorjuniorp.xadrez.model.enums.Color;
+import com.paulorjuniorp.xadrez.model.exceptions.XadrezException;
 
 public class PartidaXadrez {
     private Tabuleiro tabuleiro;
@@ -23,6 +25,29 @@ public class PartidaXadrez {
         }
 
         return matrizPecas;
+    }
+
+    public PecaXadrez executaJogadaXadrez(PosicaoXadrez posicaoOrigem, PosicaoXadrez posicaoDestino){
+        Posicao origem = posicaoOrigem.toPosicao();
+        Posicao destino = posicaoDestino.toPosicao();
+        validaPosicaoOrigem(origem);
+        Peca pecaCapturada = criaMovimento(origem, destino);
+        return (PecaXadrez) pecaCapturada;
+    }
+
+    private Peca criaMovimento(Posicao origem, Posicao destino) {
+        Peca peca = tabuleiro.removePeca(origem);
+        Peca pecaCapturada = tabuleiro.removePeca(destino);
+
+        tabuleiro.pecaNoLugar(peca, destino);
+
+        return pecaCapturada;
+    }
+
+    private void validaPosicaoOrigem(Posicao origem) {
+        if (!tabuleiro.existeUmaPeca(origem)){
+            throw new XadrezException("Não existe peça na posição de origem");
+        }
     }
 
     private void colocaNovaPeca(char coluna, int linha, PecaXadrez pecaXadrez){
