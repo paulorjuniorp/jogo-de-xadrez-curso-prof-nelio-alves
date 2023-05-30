@@ -48,14 +48,29 @@ public class UI {
         for (int i = 0; i < pecasXadrez.length; i++){
             System.out.print((8-i) + " ");
             for (int j = 0; j < pecasXadrez.length; j++){
-                imprimePeca(pecasXadrez[i][j]);
+                imprimePeca(pecasXadrez[i][j], false);
             }
             System.out.println();
         }
         System.out.println("  a b c d e f g h");
     }
 
-    private static void imprimePeca(PecaXadrez pecaXadrez){
+    public static void imprimeTabuleiro(PecaXadrez[][] pecasXadrez, boolean[][] movimentosPossiveis) {
+        for (int i = 0; i < pecasXadrez.length; i++){
+            System.out.print((8-i) + " ");
+            for (int j = 0; j < pecasXadrez.length; j++){
+                imprimePeca(pecasXadrez[i][j], movimentosPossiveis[i][j]);
+            }
+            System.out.println();
+        }
+        System.out.println("  a b c d e f g h");
+    }
+
+    private static void imprimePeca(PecaXadrez pecaXadrez, boolean background){
+        if (background){
+            System.out.print(ANSI_BLUE_BACKGROUND);
+        }
+
         if (pecaXadrez == null){
             System.out.print("-");
         } else {
