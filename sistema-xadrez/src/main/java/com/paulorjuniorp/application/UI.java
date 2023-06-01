@@ -5,8 +5,11 @@ import com.paulorjuniorp.xadrez.model.entities.PecaXadrez;
 import com.paulorjuniorp.xadrez.model.entities.PosicaoXadrez;
 import com.paulorjuniorp.xadrez.model.enums.Color;
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class UI {
 
@@ -46,7 +49,7 @@ public class UI {
         }
     }
 
-    public static void imprimePartida(PartidaXadrez partidaXadrez){
+    public static void imprimePartida(PartidaXadrez partidaXadrez, List<PecaXadrez> pecasCapturadas){
         imprimeTabuleiro(partidaXadrez.getPecas());
         System.out.println();
         System.out.println("Turno: " + partidaXadrez.getTurno());
@@ -89,5 +92,20 @@ public class UI {
             }
         }
         System.out.print(" ");
+    }
+
+    public static void imprimePecasCapturadas(List<PecaXadrez> pecasXadrez){
+        List<PecaXadrez> brancas = pecasXadrez.stream().filter(x -> x.getColor() == Color.WHITE).collect(Collectors.toList());
+        List<PecaXadrez> pretas = pecasXadrez.stream().filter(x -> x.getColor() == Color.BLACK).collect(Collectors.toList());
+
+        System.out.print(ANSI_WHITE);
+        System.out.print("Brancas: ");
+        System.out.println(Arrays.toString(brancas.toArray()));
+        System.out.println(ANSI_RESET);
+
+        System.out.print(ANSI_BLACK);
+        System.out.print("Pretas: ");
+        System.out.println(Arrays.toString(pretas.toArray()));
+        System.out.println(ANSI_RESET);
     }
 }
