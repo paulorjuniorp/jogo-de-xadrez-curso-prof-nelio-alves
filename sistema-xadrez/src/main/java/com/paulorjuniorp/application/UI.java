@@ -1,5 +1,6 @@
 package com.paulorjuniorp.application;
 
+import com.paulorjuniorp.xadrez.model.entities.PartidaXadrez;
 import com.paulorjuniorp.xadrez.model.entities.PecaXadrez;
 import com.paulorjuniorp.xadrez.model.entities.PosicaoXadrez;
 import com.paulorjuniorp.xadrez.model.enums.Color;
@@ -43,6 +44,13 @@ public class UI {
         } catch (RuntimeException e){
             throw new InputMismatchException("Erro ao ler a posição. Os valores válidos estão entre a1 e h8.");
         }
+    }
+
+    public static void imprimePartida(PartidaXadrez partidaXadrez){
+        imprimeTabuleiro(partidaXadrez.getPecas());
+        System.out.println();
+        System.out.println("Turno: " + partidaXadrez.getTurno());
+        System.out.println("Esperando jogador: " + partidaXadrez.getJogadorAtual());
     }
     public static void imprimeTabuleiro(PecaXadrez[][] pecasXadrez){
         for (int i = 0; i < pecasXadrez.length; i++){

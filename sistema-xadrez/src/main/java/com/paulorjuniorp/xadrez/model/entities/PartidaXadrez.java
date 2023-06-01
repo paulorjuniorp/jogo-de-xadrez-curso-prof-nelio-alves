@@ -9,11 +9,23 @@ import com.paulorjuniorp.xadrez.model.enums.Color;
 import com.paulorjuniorp.xadrez.model.exceptions.XadrezException;
 
 public class PartidaXadrez {
+    private int turno;
+    private Color jogadorAtual;
     private Tabuleiro tabuleiro;
 
     public PartidaXadrez() {
         tabuleiro = new Tabuleiro(8,8);
+        this.turno = 1;
+        this.jogadorAtual = Color.WHITE;
         configuracaoInicial();
+    }
+
+    public int getTurno(){
+        return turno;
+    }
+
+    public Color getJogadorAtual(){
+        return jogadorAtual;
     }
 
     public PecaXadrez[][] getPecas(){
@@ -40,6 +52,8 @@ public class PartidaXadrez {
         validaPosicaoOrigem(origem);
         validaPosicaoDestino(origem, destino);
         Peca pecaCapturada = criaMovimento(origem, destino);
+        proximoTurno();
+
         return (PecaXadrez) pecaCapturada;
     }
 
@@ -56,6 +70,9 @@ public class PartidaXadrez {
         if (!tabuleiro.existeUmaPeca(origem)){
             throw new XadrezException("Não existe peça na posição de origem");
         }
+        if (jogadorAtual != ((PecaXadrez) tabuleiro.peca(origem)).getColor()){
+            throw new XadrezException("A peça escolhida não é sua");
+        }
         if (!tabuleiro.peca(origem).existeAlgumMovimentoPossivel()){
             throw new XadrezException("Não existe movimentos para a peça escolhida.");
         }
@@ -68,6 +85,11 @@ public class PartidaXadrez {
     }
     private void colocaNovaPeca(char coluna, int linha, PecaXadrez pecaXadrez){
         tabuleiro.pecaNoLugar(pecaXadrez, new PosicaoXadrez(coluna, linha).toPosicao());
+    }
+
+    private void proximoTurno(){
+        turno++;
+        jogadorAtual = (jogadorAtual == Color.WHITE) ? Color.BLACK : Color.WHITE;
     }
 
     private void configuracaoInicial(){
