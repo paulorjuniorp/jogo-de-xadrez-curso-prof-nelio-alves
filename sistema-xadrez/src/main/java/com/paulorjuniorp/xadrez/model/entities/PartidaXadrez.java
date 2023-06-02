@@ -8,10 +8,15 @@ import com.paulorjuniorp.xadrez.model.entities.pecas.Torre;
 import com.paulorjuniorp.xadrez.model.enums.Color;
 import com.paulorjuniorp.xadrez.model.exceptions.XadrezException;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PartidaXadrez {
     private int turno;
     private Color jogadorAtual;
     private Tabuleiro tabuleiro;
+    private List<PecaXadrez> pecasNoTabuleiro = new ArrayList<>();
+    private List<Peca> pecasCapturadas = new ArrayList<>();
 
     public PartidaXadrez() {
         tabuleiro = new Tabuleiro(8,8);
@@ -63,6 +68,11 @@ public class PartidaXadrez {
 
         tabuleiro.pecaNoLugar(peca, destino);
 
+        if (pecaCapturada != null){
+            pecasNoTabuleiro.remove(pecaCapturada);
+            pecasCapturadas.add(pecaCapturada);
+        }
+
         return pecaCapturada;
     }
 
@@ -85,6 +95,7 @@ public class PartidaXadrez {
     }
     private void colocaNovaPeca(char coluna, int linha, PecaXadrez pecaXadrez){
         tabuleiro.pecaNoLugar(pecaXadrez, new PosicaoXadrez(coluna, linha).toPosicao());
+        pecasNoTabuleiro.add(pecaXadrez);
     }
 
     private void proximoTurno(){
