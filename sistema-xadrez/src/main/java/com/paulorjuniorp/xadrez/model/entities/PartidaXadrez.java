@@ -15,7 +15,7 @@ public class PartidaXadrez {
     private int turno;
     private Color jogadorAtual;
     private Tabuleiro tabuleiro;
-    private List<PecaXadrez> pecasNoTabuleiro = new ArrayList<>();
+    private List<Peca> pecasNoTabuleiro = new ArrayList<>();
     private List<Peca> pecasCapturadas = new ArrayList<>();
 
     public PartidaXadrez() {
@@ -74,6 +74,17 @@ public class PartidaXadrez {
         }
 
         return pecaCapturada;
+    }
+
+    private void desfazMovimento(Posicao origem, Posicao destino, Peca pecaCapturada){
+        Peca peca = tabuleiro.removePeca(destino);
+        tabuleiro.pecaNoLugar(peca, origem);
+
+        if (pecaCapturada != null){
+            tabuleiro.pecaNoLugar(pecaCapturada, destino);
+            pecasCapturadas.remove(pecaCapturada);
+            pecasNoTabuleiro.add(pecaCapturada);
+        }
     }
 
     private void validaPosicaoOrigem(Posicao origem) {
