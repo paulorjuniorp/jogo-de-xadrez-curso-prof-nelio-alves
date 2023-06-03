@@ -27,6 +27,10 @@ public class PartidaXadrez {
         configuracaoInicial();
     }
 
+    public boolean getCheck() {
+        return check;
+    }
+
     public int getTurno(){
         return turno;
     }
@@ -59,6 +63,14 @@ public class PartidaXadrez {
         validaPosicaoOrigem(origem);
         validaPosicaoDestino(origem, destino);
         Peca pecaCapturada = criaMovimento(origem, destino);
+
+        if (testeCheck(jogadorAtual)){
+            desfazMovimento(origem, destino, pecaCapturada);
+            throw new XadrezException("Você não pode colocar você mesmo em check");
+        }
+
+        check = testeCheck(oponente(jogadorAtual));
+
         proximoTurno();
 
         return (PecaXadrez) pecaCapturada;
@@ -119,6 +131,20 @@ public class PartidaXadrez {
             }
         }
         throw new IllegalStateException("Não existe o rei da cor " + color + " no tabuleiro");
+    }
+
+    private boolean testeCheck(Color color){
+        Posicao posicaoRei = rei(color).getPosicaoXadrez().toPosicao();
+        List<Peca> pecasOponentes = pecasNoTabuleiro.stream().filter(x -> ((PecaXadrez)x).getColor() == oponente(color)).collect(Collectors.toList());
+
+        for (Peca peca : pecasOponentes){
+            boolean[][] matriz = peca.movimentosPossiveis();
+            if (matriz[posicaoRei.getLinha()][posicaoRei.getColuna()]){
+                return true;
+            }
+        }
+
+        return false;
     }
     private void colocaNovaPeca(char coluna, int linha, PecaXadrez pecaXadrez){
         tabuleiro.pecaNoLugar(pecaXadrez, new PosicaoXadrez(coluna, linha).toPosicao());
