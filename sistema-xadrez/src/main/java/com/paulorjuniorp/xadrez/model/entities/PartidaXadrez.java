@@ -10,6 +10,7 @@ import com.paulorjuniorp.xadrez.model.exceptions.XadrezException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PartidaXadrez {
     private int turno;
@@ -17,6 +18,7 @@ public class PartidaXadrez {
     private Tabuleiro tabuleiro;
     private List<Peca> pecasNoTabuleiro = new ArrayList<>();
     private List<Peca> pecasCapturadas = new ArrayList<>();
+    private boolean check;
 
     public PartidaXadrez() {
         tabuleiro = new Tabuleiro(8,8);
@@ -103,6 +105,20 @@ public class PartidaXadrez {
         if (!tabuleiro.peca(origem).movimentoPossivel(destino)){
             throw new XadrezException("A peça escolhida não pode se mover para a posição de destino");
         }
+    }
+
+    private Color oponente(Color color){
+        return (color == Color.WHITE) ? Color.BLACK : Color.WHITE;
+    }
+
+    private PecaXadrez rei(Color color){
+        List<Peca> listaPecas = pecasNoTabuleiro.stream().filter(x -> ((PecaXadrez)x).getColor() == color).collect(Collectors.toList());
+        for (Peca peca : listaPecas){
+            if (peca instanceof Rei){
+                return (PecaXadrez) peca;
+            }
+        }
+        throw new IllegalStateException("Não existe o rei da cor " + color + " no tabuleiro");
     }
     private void colocaNovaPeca(char coluna, int linha, PecaXadrez pecaXadrez){
         tabuleiro.pecaNoLugar(pecaXadrez, new PosicaoXadrez(coluna, linha).toPosicao());
