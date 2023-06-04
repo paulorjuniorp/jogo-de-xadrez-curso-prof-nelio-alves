@@ -16,7 +16,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         List<PecaXadrez> capturadas = new ArrayList<>();
 
-        while (true){
+        while (!partidaXadrez.getCheckMate()){
             try {
                 UI.clearScreen();
                 UI.imprimePartida(partidaXadrez, capturadas);
@@ -40,5 +40,7 @@ public class Main {
                 scanner.nextLine();
             }
         }
+        UI.clearScreen();
+        UI.imprimePartida(partidaXadrez,capturadas);
     }
 }
