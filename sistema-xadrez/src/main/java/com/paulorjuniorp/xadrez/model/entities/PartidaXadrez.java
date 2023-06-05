@@ -3,6 +3,7 @@ package com.paulorjuniorp.xadrez.model.entities;
 import com.paulorjuniorp.tabuleiro.model.entities.Peca;
 import com.paulorjuniorp.tabuleiro.model.entities.Posicao;
 import com.paulorjuniorp.tabuleiro.model.entities.Tabuleiro;
+import com.paulorjuniorp.xadrez.model.entities.pecas.Peao;
 import com.paulorjuniorp.xadrez.model.entities.pecas.Rei;
 import com.paulorjuniorp.xadrez.model.entities.pecas.Torre;
 import com.paulorjuniorp.xadrez.model.enums.Color;
@@ -197,11 +198,29 @@ public class PartidaXadrez {
     }
 
     private void configuracaoInicial(){
-        colocaNovaPeca('h', 7, new Torre(tabuleiro, Color.WHITE));
-        colocaNovaPeca('d', 1, new Torre(tabuleiro, Color.WHITE));
+        colocaNovaPeca('a', 1, new Torre(tabuleiro, Color.WHITE));
+        colocaNovaPeca('h', 1, new Torre(tabuleiro, Color.WHITE));
         colocaNovaPeca('e', 1, new Rei(tabuleiro, Color.WHITE));
+        colocaNovaPeca('a',2, new Peao(tabuleiro, Color.WHITE));
+        colocaNovaPeca('b',2, new Peao(tabuleiro, Color.WHITE));
+        colocaNovaPeca('c',2, new Peao(tabuleiro, Color.WHITE));
+        colocaNovaPeca('d',2, new Peao(tabuleiro, Color.WHITE));
+        colocaNovaPeca('e',2, new Peao(tabuleiro, Color.WHITE));
+        colocaNovaPeca('f',2, new Peao(tabuleiro, Color.WHITE));
+        colocaNovaPeca('g',2, new Peao(tabuleiro, Color.WHITE));
+        colocaNovaPeca('h',2, new Peao(tabuleiro, Color.WHITE));
 
-        colocaNovaPeca('b', 8, new Torre(tabuleiro, Color.BLACK));
-        colocaNovaPeca('a', 8, new Rei(tabuleiro, Color.BLACK));
+
+        colocaNovaPeca('a', 8, new Torre(tabuleiro, Color.BLACK));
+        colocaNovaPeca('h', 8, new Torre(tabuleiro, Color.BLACK));
+        colocaNovaPeca('e', 8, new Rei(tabuleiro, Color.BLACK));
+        colocaNovaPeca('a',7, new Peao(tabuleiro, Color.BLACK));
+        colocaNovaPeca('b',7, new Peao(tabuleiro, Color.BLACK));
+        colocaNovaPeca('c',7, new Peao(tabuleiro, Color.BLACK));
+        colocaNovaPeca('d',7, new Peao(tabuleiro, Color.BLACK));
+        colocaNovaPeca('e',7, new Peao(tabuleiro, Color.BLACK));
+        colocaNovaPeca('f',7, new Peao(tabuleiro, Color.BLACK));
+        colocaNovaPeca('g',7, new Peao(tabuleiro, Color.BLACK));
+        colocaNovaPeca('h',7, new Peao(tabuleiro, Color.BLACK));
     }
 }

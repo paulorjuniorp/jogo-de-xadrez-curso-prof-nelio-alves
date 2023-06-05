@@ -68,4 +68,9 @@ public class Peao extends PecaXadrez {
 
         return new boolean[0][];
     }
+
+    @Override
+    public String toString() {
+        return "P";
+    }
 }
