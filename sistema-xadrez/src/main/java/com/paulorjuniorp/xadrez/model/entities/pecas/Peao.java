@@ -66,7 +66,7 @@ public class Peao extends PecaXadrez {
         }
 
 
-        return new boolean[0][];
+        return matriz;
     }
 
     @Override
