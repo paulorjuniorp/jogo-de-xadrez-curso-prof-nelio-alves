@@ -2,12 +2,16 @@ package com.paulorjuniorp.xadrez.model.entities.pecas;
 
 import com.paulorjuniorp.tabuleiro.model.entities.Posicao;
 import com.paulorjuniorp.tabuleiro.model.entities.Tabuleiro;
+import com.paulorjuniorp.xadrez.model.entities.PartidaXadrez;
 import com.paulorjuniorp.xadrez.model.entities.PecaXadrez;
 import com.paulorjuniorp.xadrez.model.enums.Color;
 
 public class Rei extends PecaXadrez {
-    public Rei(Tabuleiro tabuleiro, Color color) {
+
+    private PartidaXadrez partidaXadrez;
+    public Rei(Tabuleiro tabuleiro, Color color, PartidaXadrez partidaXadrez) {
         super(tabuleiro, color);
+        this.partidaXadrez = partidaXadrez;
     }
 
     @Override
