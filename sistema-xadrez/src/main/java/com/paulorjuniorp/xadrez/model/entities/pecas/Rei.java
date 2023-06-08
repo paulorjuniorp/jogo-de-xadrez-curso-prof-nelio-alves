@@ -86,7 +86,26 @@ public class Rei extends PecaXadrez {
 
         // #movimento especial de roque
         if (getContagemMovimento() == 0 && !partidaXadrez.getCheck()){
-            
+            // #movimento especial da torre do lado do rei
+            Posicao posicaoT1 = new Posicao(posicao.getLinha(), posicao.getColuna() + 3);
+            if (testeRoqueTorre(posicaoT1)){
+                Posicao posicaoUmDireita = new Posicao(posicao.getLinha(), posicao.getColuna() + 1);
+                Posicao posicaoDoisDireita = new Posicao(posicao.getLinha(), posicao.getColuna() + 2);
+                if (getTabuleiro().peca(posicaoUmDireita) == null && getTabuleiro().peca(posicaoDoisDireita) == null){
+                    matrizAux[posicao.getLinha()][posicao.getColuna() + 2] = true;
+                }
+            }
+
+            // #movimento especial da torre do lado da rainha
+            Posicao posicaoT2 = new Posicao(posicao.getLinha(), posicao.getColuna() -4);
+            if (testeRoqueTorre(posicaoT2)){
+                Posicao posicaoUmEsquerda = new Posicao(posicao.getLinha(), posicao.getColuna() - 1);
+                Posicao posicaoDoisEsquerda = new Posicao(posicao.getLinha(), posicao.getColuna() - 2);
+                Posicao posicaoTresEsquerda = new Posicao(posicao.getLinha(), posicao.getColuna() - 3);
+                if (getTabuleiro().peca(posicaoUmEsquerda) == null && getTabuleiro().peca(posicaoDoisEsquerda) == null && getTabuleiro().peca(posicaoTresEsquerda) == null){
+                    matrizAux[posicao.getLinha()][posicao.getColuna() - 2] = true;
+                }
+            }
         }
 
         return matrizAux;
