@@ -2,12 +2,16 @@ package com.paulorjuniorp.xadrez.model.entities.pecas;
 
 import com.paulorjuniorp.tabuleiro.model.entities.Posicao;
 import com.paulorjuniorp.tabuleiro.model.entities.Tabuleiro;
+import com.paulorjuniorp.xadrez.model.entities.PartidaXadrez;
 import com.paulorjuniorp.xadrez.model.entities.PecaXadrez;
 import com.paulorjuniorp.xadrez.model.enums.Color;
 
 public class Peao extends PecaXadrez {
-    public Peao(Tabuleiro tabuleiro, Color color) {
+
+    private PartidaXadrez partidaXadrez;
+    public Peao(Tabuleiro tabuleiro, Color color, PartidaXadrez partidaXadrez) {
         super(tabuleiro, color);
+        this.partidaXadrez = partidaXadrez;
     }
 
     @Override
@@ -39,6 +43,20 @@ public class Peao extends PecaXadrez {
             if (getTabuleiro().existePecaPosicao(posicaoPeca) && existePecaAdversaria(posicaoPeca)){
                 matriz[posicaoPeca.getLinha()][posicaoPeca.getColuna()] = true;
             }
+
+            // #movimento especial en passant brancas
+            if (posicao.getLinha() == 3){
+                Posicao esquerda = new Posicao(posicao.getLinha(), posicao.getColuna() - 1);
+                if (getTabuleiro().existePecaPosicao(esquerda) && existePecaAdversaria(esquerda) && getTabuleiro().peca(esquerda) == partidaXadrez.getVulneravelAoEnPassant()){
+                    matriz[esquerda.getLinha() - 1][esquerda.getColuna()] = true;
+                }
+
+                Posicao direita = new Posicao(posicao.getLinha(), posicao.getColuna() + 1);
+                if (getTabuleiro().existePecaPosicao(direita) && existePecaAdversaria(direita) && getTabuleiro().peca(direita) == partidaXadrez.getVulneravelAoEnPassant()){
+                    matriz[direita.getLinha() - 1][direita.getColuna()] = true;
+                }
+            }
+
         } else {
             posicaoPeca.setValores(posicao.getLinha() + 1, posicao.getColuna());
             if (getTabuleiro().existePecaPosicao(posicaoPeca) && !getTabuleiro().existeUmaPeca(posicaoPeca)){
@@ -62,6 +80,19 @@ public class Peao extends PecaXadrez {
             posicaoPeca.setValores(posicao.getLinha() + 1, posicao.getColuna() + 1);
             if (getTabuleiro().existePecaPosicao(posicaoPeca) && existePecaAdversaria(posicaoPeca)){
                 matriz[posicaoPeca.getLinha()][posicaoPeca.getColuna()] = true;
+            }
+
+            // #movimento especial en passant pretas
+            if (posicao.getLinha() == 4){
+                Posicao esquerda = new Posicao(posicao.getLinha(), posicao.getColuna() - 1);
+                if (getTabuleiro().existePecaPosicao(esquerda) && existePecaAdversaria(esquerda) && getTabuleiro().peca(esquerda) == partidaXadrez.getVulneravelAoEnPassant()){
+                    matriz[esquerda.getLinha() + 1][esquerda.getColuna()] = true;
+                }
+
+                Posicao direita = new Posicao(posicao.getLinha(), posicao.getColuna() + 1);
+                if (getTabuleiro().existePecaPosicao(direita) && existePecaAdversaria(direita) && getTabuleiro().peca(direita) == partidaXadrez.getVulneravelAoEnPassant()){
+                    matriz[direita.getLinha() + 1][direita.getColuna()] = true;
+                }
             }
         }
 

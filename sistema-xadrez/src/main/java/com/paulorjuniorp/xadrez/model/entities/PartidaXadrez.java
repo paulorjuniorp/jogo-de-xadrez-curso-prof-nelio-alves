@@ -254,14 +254,14 @@ public class PartidaXadrez {
         colocaNovaPeca('f',1, new Bispo(tabuleiro, Color.WHITE));
         colocaNovaPeca('g', 1, new Cavalo(tabuleiro, Color.WHITE));
         colocaNovaPeca('h', 1, new Torre(tabuleiro, Color.WHITE));
-        colocaNovaPeca('a',2, new Peao(tabuleiro, Color.WHITE));
-        colocaNovaPeca('b',2, new Peao(tabuleiro, Color.WHITE));
-        colocaNovaPeca('c',2, new Peao(tabuleiro, Color.WHITE));
-        colocaNovaPeca('d',2, new Peao(tabuleiro, Color.WHITE));
-        colocaNovaPeca('e',2, new Peao(tabuleiro, Color.WHITE));
-        colocaNovaPeca('f',2, new Peao(tabuleiro, Color.WHITE));
-        colocaNovaPeca('g',2, new Peao(tabuleiro, Color.WHITE));
-        colocaNovaPeca('h',2, new Peao(tabuleiro, Color.WHITE));
+        colocaNovaPeca('a',2, new Peao(tabuleiro, Color.WHITE, this));
+        colocaNovaPeca('b',2, new Peao(tabuleiro, Color.WHITE, this));
+        colocaNovaPeca('c',2, new Peao(tabuleiro, Color.WHITE, this));
+        colocaNovaPeca('d',2, new Peao(tabuleiro, Color.WHITE, this));
+        colocaNovaPeca('e',2, new Peao(tabuleiro, Color.WHITE, this));
+        colocaNovaPeca('f',2, new Peao(tabuleiro, Color.WHITE, this));
+        colocaNovaPeca('g',2, new Peao(tabuleiro, Color.WHITE, this));
+        colocaNovaPeca('h',2, new Peao(tabuleiro, Color.WHITE, this));
 
 
         colocaNovaPeca('a', 8, new Torre(tabuleiro, Color.BLACK));
@@ -272,13 +272,13 @@ public class PartidaXadrez {
         colocaNovaPeca('f', 8, new Bispo(tabuleiro, Color.BLACK));
         colocaNovaPeca('g',8, new Cavalo(tabuleiro, Color.BLACK));
         colocaNovaPeca('h', 8, new Torre(tabuleiro, Color.BLACK));
-        colocaNovaPeca('a',7, new Peao(tabuleiro, Color.BLACK));
-        colocaNovaPeca('b',7, new Peao(tabuleiro, Color.BLACK));
-        colocaNovaPeca('c',7, new Peao(tabuleiro, Color.BLACK));
-        colocaNovaPeca('d',7, new Peao(tabuleiro, Color.BLACK));
-        colocaNovaPeca('e',7, new Peao(tabuleiro, Color.BLACK));
-        colocaNovaPeca('f',7, new Peao(tabuleiro, Color.BLACK));
-        colocaNovaPeca('g',7, new Peao(tabuleiro, Color.BLACK));
-        colocaNovaPeca('h',7, new Peao(tabuleiro, Color.BLACK));
+        colocaNovaPeca('a',7, new Peao(tabuleiro, Color.BLACK, this));
+        colocaNovaPeca('b',7, new Peao(tabuleiro, Color.BLACK, this));
+        colocaNovaPeca('c',7, new Peao(tabuleiro, Color.BLACK, this));
+        colocaNovaPeca('d',7, new Peao(tabuleiro, Color.BLACK, this));
+        colocaNovaPeca('e',7, new Peao(tabuleiro, Color.BLACK, this));
+        colocaNovaPeca('f',7, new Peao(tabuleiro, Color.BLACK, this));
+        colocaNovaPeca('g',7, new Peao(tabuleiro, Color.BLACK, this));
+        colocaNovaPeca('h',7, new Peao(tabuleiro, Color.BLACK, this));
     }
 }
