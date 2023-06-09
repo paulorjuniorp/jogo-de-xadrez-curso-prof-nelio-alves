@@ -19,6 +19,7 @@ public class PartidaXadrez {
     private List<Peca> pecasCapturadas = new ArrayList<>();
     private boolean check;
     private boolean checkMate;
+    private PecaXadrez vulneravelAoEnPassant;
     public PartidaXadrez() {
         tabuleiro = new Tabuleiro(8,8);
         this.turno = 1;
@@ -40,6 +41,10 @@ public class PartidaXadrez {
 
     public Color getJogadorAtual(){
         return jogadorAtual;
+    }
+
+    public PecaXadrez getVulneravelAoEnPassant() {
+        return vulneravelAoEnPassant;
     }
 
     public PecaXadrez[][] getPecas(){
@@ -72,6 +77,8 @@ public class PartidaXadrez {
             throw new XadrezException("Você não pode colocar você mesmo em check");
         }
 
+        PecaXadrez pecaMovida = (PecaXadrez) tabuleiro.peca(destino);
+
         check = testeCheck(oponente(jogadorAtual));
 
         if (testeCheckMate(oponente(jogadorAtual))){
@@ -80,6 +87,12 @@ public class PartidaXadrez {
             proximoTurno();
         }
 
+        // #movimento especial en passant
+        if (pecaMovida instanceof Peao && (destino.getLinha() == origem.getLinha() + 2 || destino.getLinha() == origem.getLinha() - 2)){
+            vulneravelAoEnPassant = pecaMovida;
+        } else {
+            vulneravelAoEnPassant = null;
+        }
 
         return (PecaXadrez) pecaCapturada;
     }
