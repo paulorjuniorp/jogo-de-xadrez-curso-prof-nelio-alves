@@ -35,6 +35,12 @@ public class Main {
                 if (pecaCapturada != null){
                     capturadas.add(pecaCapturada);
                 }
+
+                if (partidaXadrez.getPromovido() != null){
+                    System.out.print("Digite a peça que será promovida (B/T/Q/C): ");
+                    String tipo = scanner.nextLine();
+                    partidaXadrez.substituiPecaPromovida(tipo);
+                }
             } catch (XadrezException | InputMismatchException e){
                 System.out.println(e.getMessage());
                 scanner.nextLine();
