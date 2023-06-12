@@ -7,7 +7,6 @@ import com.paulorjuniorp.xadrez.model.entities.pecas.*;
 import com.paulorjuniorp.xadrez.model.enums.Color;
 import com.paulorjuniorp.xadrez.model.exceptions.XadrezException;
 
-import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -119,7 +118,7 @@ public class PartidaXadrez {
         }
 
         if (!tipo.equals("B") && !tipo.equals("T") && !tipo.equals("C") && !tipo.equals("Q")){
-            throw new InvalidParameterException("Tipo inválido para realizar a promoção");
+            return promovido;
         }
 
         Posicao posicao = promovido.getPosicaoXadrez().toPosicao();
